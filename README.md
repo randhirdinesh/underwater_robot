@@ -1,4 +1,4 @@
- **AI-Based ROS2 Underwater Navigation System**, 
+#  **AI-Based ROS2 Underwater Navigation System**, 
 
 ✅ **Gazebo Simulation Setup**  
 ✅ **AI-Based Obstacle Avoidance with TensorRT**  
@@ -7,26 +7,6 @@
 ✅ **Swarm Communication & Multi-Robot AI**  
 ✅ **GitHub CI/CD for Automated ROS2 Build & Test**  
 ✅ **Docker Containerization for Cross-Platform Deployment**  
-
----
-
-## 📄 **File: `README.md`**  
-
-```md
-# 🌊 AI-Based ROS2 Underwater Navigation System 🚀  
-
-This repository contains a **ROS2-based AI Navigation System** designed for **underwater robotics**. It integrates **Gazebo Simulation, AI-based Obstacle Avoidance, MPPI Navigation, and Swarm Coordination**.  
-
----
-
-# 📌 **1️⃣ Features**
-✅ **SuperPoint & SuperGlue SLAM** (Visual-Inertial Odometry)  
-✅ **MPPI-Based Real-Time Obstacle Avoidance** (GPU Accelerated)  
-✅ **AI-Based Sonar Obstacle Detection (TensorRT Optimized)**  
-✅ **HARRT Planner (Hybrid A*, RRT*, RL) for Path Planning**  
-✅ **Thruster Force Optimization & Adaptive Depth Control**  
-✅ **Gazebo Simulation & Real-World Hardware Support**  
-✅ **Multi-Robot Swarm Communication using ROS2**  
 
 ---
 
