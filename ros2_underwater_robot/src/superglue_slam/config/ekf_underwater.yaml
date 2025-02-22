@@ -1,0 +1,117 @@
+# EKF configuration for underwater sensor fusion
+ekf_filter_node:
+    ros__parameters:
+        use_sim_time: false
+        frequency: 50.0  # Fast update rate for real-time localization
+        sensor_timeout: 1.0  # If a sensor stops publishing, ignore it
+        transform_time_offset: 0.2
+        transform_timeout: 0.0
+        print_diagnostics: true
+        debug: false
+        publish_tf: true
+        publish_acceleration: false
+        reset_on_time_jump: true
+
+        # Coordinate Frames
+        map_frame: map                 
+        odom_frame: odom               
+        base_link_frame: base_link     
+        world_frame: odom              
+
+        # ==================== SENSOR CONFIGURATION ====================
+
+        # **Primary 9-Axis IMU**
+        imu0: "/imu/data"
+        imu0_config: [false, false, false,  # Position X, Y, Z
+                      true, true, true,    # Rotation (Roll, Pitch, Yaw)
+                      false, false, false, # Linear velocity
+                      true, true, true,    # Angular velocity
+                      true, true, true]    # Linear acceleration
+
+        imu0_nodelay: true
+        imu0_differential: false
+        imu0_relative: true
+        imu0_queue_size: 15
+        imu0_remove_gravitational_acceleration: true
+
+        # **IMU from ZED X Camera 1**
+        imu1: "/zedx1/imu/data"
+        imu1_config: [false, false, false,  
+                      true, true, true,    
+                      false, false, false, 
+                      true, true, true,    
+                      true, true, true]    
+
+        imu1_nodelay: true
+        imu1_differential: false
+        imu1_relative: true
+        imu1_queue_size: 15
+        imu1_remove_gravitational_acceleration: true
+
+        # **IMU from ZED X Camera 2**
+        imu2: "/zedx2/imu/data"
+        imu2_config: [false, false, false,  
+                      true, true, true,    
+                      false, false, false, 
+                      true, true, true,    
+                      true, true, true]    
+
+        imu2_nodelay: true
+        imu2_differential: false
+        imu2_relative: true
+        imu2_queue_size: 15
+        imu2_remove_gravitational_acceleration: true
+
+        # **Primary 3D Lidar Odometry**
+        lidar0: "/lidar/odom"
+        lidar0_config: [true, true, true,   # Position X, Y, Z
+                        false, false, false, # Rotation
+                        true, true, true,   # Velocity
+                        false, false, false] # Acceleration
+
+        lidar0_nodelay: true
+        lidar0_differential: false
+        lidar0_relative: true
+        lidar0_queue_size: 15
+
+        # **Primary Odometry (Wheel or Visual)**
+        odom0: "/odom"
+        odom0_config: [true, true, true,  # Position X, Y, Z
+                       false, false, false, # Rotation
+                       true, true, true,  # Velocity X, Y, Z
+                       false, false, false] # Angular velocity
+
+        odom0_nodelay: true
+        odom0_differential: false
+        odom0_relative: true
+        odom0_queue_size: 15
+
+        # **Camera Pose Estimation (ZED X 1)**
+        camera0: "/zedx1/pose"
+        camera0_config: [true, true, true,   # Position X, Y, Z
+                         false, false, false, # Rotation
+                         false, false, false, # Velocity
+                         false, false, false] # Acceleration
+
+        # **Camera Pose Estimation (ZED X 2)**
+        camera1: "/zedx2/pose"
+        camera1_config: [true, true, true,   
+                         false, false, false, 
+                         false, false, false, 
+                         false, false, false] 
+
+        # ==================== OPTIONAL GPS CONFIGURATION ====================
+        odom1: "/gps/odometry"
+        odom1_config: [true, true, false,  
+                       false, false, false, 
+                       false, false, false, 
+                       false, false, false, 
+                       false, false, false] 
+
+        odom1_nodelay: false
+        odom1_differential: false
+        odom1_relative: false
+        odom1_queue_size: 15
+
+        # Set GPS as optional - If GPS is not available, ignore it
+        sensor_timeout: 2.0  # Wait for GPS, but do not halt if missing

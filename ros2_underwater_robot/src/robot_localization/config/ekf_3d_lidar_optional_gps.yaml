@@ -1,0 +1,90 @@
+# EKF Fusion Config for IMU, Lidar, GPS
+ekf_filter_node:
+  ros__parameters:
+    use_sim_time: false
+    frequency: 50.0  # High-frequency sensor fusion
+    sensor_timeout: 2.0  # If a sensor stops publishing, ignore it after 2s
+    transform_time_offset: 0.2
+    transform_timeout: 0.0
+    print_diagnostics: true
+    publish_tf: true
+    publish_acceleration: false
+    reset_on_time_jump: true
+
+    # **Coordinate Frames**
+    map_frame: map
+    odom_frame: odom
+    base_link_frame: base_link
+    world_frame: odom
+
+    # ==================== SENSOR CONFIGURATION ====================
+
+    # **Primary IMU (9-axis)**
+    imu0: "/imu/data"
+    imu0_config: [false, false, false,  
+                  true, true, true,    
+                  false, false, false, 
+                  true, true, true,    
+                  true, true, true]    
+    imu0_remove_gravitational_acceleration: true
+
+    # **IMU from ZED X Camera 1**
+    imu1: "/zedx1/imu/data"
+    imu1_config: [false, false, false,  
+                  true, true, true,    
+                  false, false, false, 
+                  true, true, true,    
+                  true, true, true]    
+    imu1_remove_gravitational_acceleration: true
+
+    # **IMU from ZED X Camera 2**
+    imu2: "/zedx2/imu/data"
+    imu2_config: [false, false, false,  
+                  true, true, true,    
+                  false, false, false, 
+                  true, true, true,    
+                  true, true, true]    
+    imu2_remove_gravitational_acceleration: true
+
+    # **3D Lidar Odometry (Main Source of Position)**
+    lidar0: "/lidar/odom"
+    lidar0_config: [true, true, true,   
+                    false, false, false, 
+                    true, true, true,   
+                    false, false, false] 
+
+    # **Sonar-Based Obstacle Avoidance (For Localization Correction)**
+    sonar0: "/sonar/odom"
+    sonar0_config: [true, true, false,   
+                    false, false, false, 
+                    false, false, false, 
+                    false, false, false] 
+
+    # **Camera-Based Pose Estimation (Feature Tracking via SuperGlue)**
+    camera0: "/keypoint_matches"
+    camera0_config: [true, true, false,  
+                     false, false, false, 
+                     false, false, false, 
+                     false, false, false]  
+
+    # ==================== OPTIONAL GPS CONFIGURATION ====================
+    odom1: "/gps/odometry"
+    odom1_config: [true, true, false,  
+                   false, false, false, 
+                   false, false, false, 
+                   false, false, false, 
+                   false, false, false]  
+    odom1_nodelay: false
+    odom1_differential: false
+    odom1_relative: false
+    odom1_queue_size: 15
+
+    # Set GPS as optional - If GPS is not available, ignore it
+    sensor_timeout: 2.0  
+
+    # ==================== PROCESS NOISE CONFIGURATION ====================
+    process_noise_covariance: [0.1,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0,
+                               0.0,  0.1,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0,
+                               0.0,  0.0,  0.06, 0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0]
+
+

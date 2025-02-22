@@ -1,0 +1,56 @@
+# RViz config for SLAM visualization
+VisualizationManager:
+  GlobalOptions:
+    Fixed Frame: "map"
+  Displays:
+    - Name: "Grid"
+      Class: "rviz/Grid"
+      Enabled: True
+      Cell Size: 1.0
+
+    - Name: "TF"
+      Class: "rviz/TF"
+      Enabled: True
+
+    - Name: "Odometry"
+      Class: "rviz/Odometry"
+      Enabled: True
+      Topic: "/odometry/filtered"
+      Keep: 10
+      Shape: "Arrow"
+      Color: [0, 1, 0, 1]  # Green
+
+    - Name: "3D Lidar PointCloud"
+      Class: "rviz/PointCloud2"
+      Enabled: True
+      Topic: "/lidar/points"
+      Size: 0.05
+      Style: "Flat Squares"
+
+    - Name: "Sonar PointCloud"
+      Class: "rviz/PointCloud2"
+      Enabled: True
+      Topic: "/sonar/points"
+      Size: 0.05
+      Style: "Flat Squares"
+
+    - Name: "ZED X Camera Image"
+      Class: "rviz/Image"
+      Enabled: True
+      Topic: "/zedx/image_raw"
+
+    - Name: "SuperGlue Keypoints"
+      Class: "rviz/Image"
+      Enabled: True
+      Topic: "/keypoint_matches"
+
+    - Name: "Planned Path"
+      Class: "rviz/Path"
+      Enabled: True
+      Topic: "/planned_path"
+      Color: [1, 0, 0, 1]  # Red
+      Line Width: 2.0
+
+    - Name: "Robot Model"
+      Class: "rviz/RobotModel"
+      Enabled: True
