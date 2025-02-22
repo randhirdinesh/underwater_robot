@@ -1,4 +1,4 @@
-Here is the **complete, best-of-best** **`README.md`** file for your **AI-Based ROS2 Underwater Navigation System**, formatted **perfectly for GitHub**. This includes:  
+ **AI-Based ROS2 Underwater Navigation System**, 
 
 ✅ **Gazebo Simulation Setup**  
 ✅ **AI-Based Obstacle Avoidance with TensorRT**  
